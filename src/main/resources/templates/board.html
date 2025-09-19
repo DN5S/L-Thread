@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">/board/ - L-Thread</title>
+    <meta name="description" th:content="${metaDescription}">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#content" class="skip-link">Skip to content</a>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+                <a href="/">[Home]</a> / <span th:text="|/${board}/|">/board/</span>
+            </nav>
+            <h1 th:text="|/${board}/|">/board/</h1>
+        </header>
+
+        <section class="thread-form" role="region" aria-label="Create new thread">
+            <details>
+                <summary>[New Thread]</summary>
+                <form th:action="@{/board/{name}/create(name=${board})}" method="post" enctype="multipart/form-data">
+                    <input type="text" name="website" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <table>
+                        <tr>
+                            <td><label for="thread-name">Name:</label></td>
+                            <td><input type="text" id="thread-name" name="name" placeholder="Anonymous (optional)" maxlength="100" aria-label="Author name (optional)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="thread-image">Image:</label></td>
+                            <td><input type="file" id="thread-image" name="image" accept="image/jpeg,image/png,image/gif" required aria-label="Thread opening image" aria-required="true"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="thread-text">Text:</label></td>
+                            <td><textarea id="thread-text" name="text" rows="6" cols="60" maxlength="2000" required aria-label="Thread message" aria-required="true"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Create Thread</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </details>
+        </section>
+
+        <main id="content" role="main">
+            <div class="thread-list">
+                <article th:each="thread : ${threads}" class="thread-preview">
+                    <div class="thread-header">
+                        <span class="thread-id" th:text="|Thread #${thread.id}|">Thread #123</span>
+                        <span class="reply-count" th:text="|${thread.replyCount} replies|">5 replies</span>
+                        <span class="last-post" th:text="|Last: ${#temporals.format(thread.lastPostTime, 'yyyy-MM-dd HH:mm:ss')}|">Last: 2025-01-20 12:34:56</span>
+                    </div>
+
+                    <div th:if="${thread.op}" class="post op-post">
+                        <div class="post-header">
+                            <span class="post-name" th:text="${thread.op.tripcode}">Anonymous</span>
+                            <span class="post-time" th:text="${#temporals.format(thread.op.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:34:56</span>
+                        </div>
+                        <div class="post-content">
+                            <a th:if="${thread.op.thumbnailPath}"
+                               th:href="@{/static/{file}(file=${thread.op.imagePath})}"
+                               target="_blank" class="thumbnail-link">
+                                <img th:src="@{/static/thumbnails/{file}(file=${thread.op.thumbnailPath})}"
+                                     class="thumbnail" alt="Thread thumbnail" loading="lazy">
+                            </a>
+                            <p class="post-text" th:text="${thread.op.text}">Post text here...</p>
+                        </div>
+                    </div>
+
+                    <div th:if="${!thread.previewReplies.isEmpty()}" class="preview-replies">
+                        <div th:each="reply : ${thread.previewReplies}" class="post reply-post">
+                            <div class="post-header">
+                                <span class="post-name" th:text="${reply.tripcode}">Anonymous</span>
+                                <span class="post-time" th:text="${#temporals.format(reply.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:35:23</span>
+                            </div>
+                            <div class="post-content">
+                                <a th:if="${reply.thumbnailPath}"
+                                   th:href="@{/static/{file}(file=${reply.imagePath})}"
+                                   target="_blank" class="thumbnail-link">
+                                    <img th:src="@{/static/thumbnails/{file}(file=${reply.thumbnailPath})}"
+                                         class="thumbnail-small" alt="Reply thumbnail" loading="lazy">
+                                </a>
+                                <p class="post-text" th:text="${reply.text}">Reply text...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="thread-footer">
+                        <a th:href="@{/thread/{id}(id=${thread.id})}" class="view-thread">[View Thread]</a>
+                    </div>
+                </article>
+            </div>
+
+            <nav th:if="${totalPages > 1}" class="pagination" role="navigation" aria-label="Page navigation">
+                <span>Pages: </span>
+                <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+                    <a th:if="${pageNum != currentPage}"
+                       th:href="@{/board/{name}(name=${board}, page=${pageNum})}"
+                       th:text="${pageNum}">1</a>
+                    <strong th:if="${pageNum == currentPage}" th:text="|[${pageNum}]|">[1]</strong>
+                </span>
+            </nav>
+        </main>
+
+        <footer>
+            <hr>
+            <nav role="navigation" aria-label="Footer navigation">
+                <a href="/help">[Help/Rules]</a>
+            </nav>
+        </footer>
+    </div>
+    <script src="/js/minimal.js" defer></script>
+</body>
+</html>

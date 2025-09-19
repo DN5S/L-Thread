@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Thread - L-Thread</title>
+    <meta name="description" th:content="${metaDescription}">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#content" class="skip-link">Skip to content</a>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+                <a href="/">[Home]</a> /
+                <a th:href="@{/board/{name}(name=${thread.boardName})}" th:text="|/${thread.boardName}/|">/board/</a> /
+                <span th:text="|Thread #${thread.id}|">Thread #123</span>
+            </nav>
+            <h1 th:text="|Thread #${thread.id}|">Thread #123</h1>
+        </header>
+
+        <main id="content" role="main">
+            <div class="thread-posts">
+                <article th:each="post, iterStat : ${thread.posts}"
+                         th:classappend="${iterStat.first} ? 'op-post' : 'reply-post'"
+                         class="post"
+                         th:id="|post${post.id}|">
+                    <div class="post-header">
+                        <span class="post-number" th:text="|No.${post.id}|">No.456</span>
+                        <span class="post-name" th:text="${post.tripcode}">Anonymous</span>
+                        <span class="post-time" th:text="${#temporals.format(post.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:34:56</span>
+                    </div>
+                    <div class="post-content">
+                        <a th:if="${post.imagePath}"
+                           th:href="@{/static/{file}(file=${post.imagePath})}"
+                           target="_blank" class="image-link">
+                            <img th:src="@{/static/thumbnails/{file}(file=${post.thumbnailPath})}"
+                                 class="post-image" alt="Post image" loading="lazy">
+                        </a>
+                        <p class="post-text" th:text="${post.text}">Post text here...</p>
+                    </div>
+                </article>
+            </div>
+
+            <section class="reply-form" role="region" aria-label="Post reply">
+                <h2>[Post Reply]</h2>
+                <form th:action="@{/thread/{id}/reply(id=${thread.id})}" method="post" enctype="multipart/form-data">
+                    <input type="text" name="website" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <table>
+                        <tr>
+                            <td><label for="reply-name">Name:</label></td>
+                            <td><input type="text" id="reply-name" name="name" placeholder="Anonymous (optional)" maxlength="100" aria-label="Author name (optional)"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="reply-image">Image:</label></td>
+                            <td><input type="file" id="reply-image" name="image" accept="image/jpeg,image/png,image/gif" aria-label="Optional reply image"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="reply-text">Text:</label></td>
+                            <td><textarea id="reply-text" name="text" rows="6" cols="60" maxlength="2000" required aria-label="Reply message" aria-required="true"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Post Reply</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+
+            <a id="bottom"></a>
+        </main>
+
+        <footer>
+            <hr>
+            <nav class="thread-nav" role="navigation" aria-label="Thread navigation">
+                <a href="#top">[Top]</a>
+                <a th:href="@{/board/{name}(name=${thread.boardName})}">[Back to Board]</a>
+                <a href="/help">[Help/Rules]</a>
+            </nav>
+        </footer>
+    </div>
+    <script src="/js/minimal.js" defer></script>
+</body>
+</html>

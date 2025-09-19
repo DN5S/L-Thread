@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: lthread
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  thymeleaf:
+    cache: true  # Set to false in development
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 3600  # Static resources cached for 1 hour
+          cache-public: true
+
+lthread:
+  boards:
+    - general
+    - tech
+    - anime
+    - gaming
+    - random
+    - request
+  thread:
+    page-size: 15
+    preview-replies: 3
+  storage:
+    images-path: /app/static
+    thumbnails-subdir: thumbnails
+  pruning:
+    memory-threshold: ${MEMORY_THRESHOLD:0.8}
+    check-interval: 300000  # 5 minutes in ms
+    prune-count: 10
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json
+    min-response-size: 1024
+  http2:
+    enabled: true

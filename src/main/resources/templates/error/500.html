@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Malfunction - L-Thread</title>
+    <meta name="description" content="Internal server error">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>System Malfunction</h1>
+        </header>
+
+        <main class="error-page">
+            <pre class="error-art">
+    ／l、
+   (ﾟ､ ｡ ７
+    l  ~ヽ
+    じしf_,)ノ
+  [ERROR ERROR]
+            </pre>
+
+            <p class="error-message" th:text="${errorMessage} ?: 'System malfunction. Please try again.'">
+                System malfunction. Please try again.
+            </p>
+
+            <p class="error-code">ERROR 500</p>
+
+            <div class="lain-quote">
+                <p>"Close the world. Open the next."</p>
+            </div>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="/">[Return to Home]</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>

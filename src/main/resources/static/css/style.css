@@ -1,0 +1,159 @@
+/* L-Thread Minimal CSS - 90s Textboard Style */
+
+/* Base */
+body {
+    background: #0a0a0a;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* CRT Scanline effect - extremely subtle */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+            transparent 50%,
+            rgba(0, 255, 0, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Typography */
+a { color: #00ffff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2 {
+    color: #00ff00;
+    margin: 20px 0 10px;
+    /* Subtle phosphor glow */
+    text-shadow: 0 0 1px rgba(0, 255, 0, 0.5);
+}
+pre {
+    font-family: monospace;
+    color: #00ff00;
+    line-height: 1.0;
+    /* Subtle phosphor glow for ASCII art */
+    text-shadow: 0 0 1px rgba(0, 255, 0, 0.4);
+}
+hr { border: 1px solid #333; }
+
+/* Header */
+header {
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: monospace;
+}
+.subtitle { color: #888; font-style: italic; }
+.breadcrumb { margin: 10px 0; }
+
+/* Posts */
+.post {
+    margin: 20px 0;
+    padding: 10px;
+    border-left: 2px solid #333;
+}
+.post-header { margin-bottom: 10px; color: #888; }
+.post-name { color: #00ffff; }
+.post-time { margin-left: 10px; }
+.post-text {
+    margin: 10px 0;
+    white-space: pre-wrap;
+    /* Very subtle phosphor glow on post text */
+    text-shadow: 0 0 0.5px rgba(0, 255, 0, 0.3);
+}
+
+/* Images */
+.thumbnail, .post-image {
+    max-width: 250px;
+    max-height: 250px;
+    display: block;
+    margin: 10px 0;
+}
+.thumbnail-small { max-width: 125px; max-height: 125px; }
+
+/* Forms */
+input[type="text"], input[type="file"], textarea, button {
+    background: #111;
+    color: #00ff00;
+    border: 1px solid #333;
+    padding: 5px;
+    font-family: inherit;
+}
+textarea { width: 100%; max-width: 500px; resize: vertical; }
+button { cursor: pointer; }
+button:hover { background: #222; }
+details summary { cursor: pointer; color: #00ffff; }
+
+/* Lists */
+ul { list-style: none; padding: 0; }
+.board-list li { margin: 10px 0; }
+
+/* Pagination */
+.pagination { margin: 30px 0; text-align: center; }
+.pagination strong { color: #00ff00; }
+
+/* Thread */
+.thread-preview {
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid #333;
+}
+.thread-header { margin-bottom: 15px; color: #888; }
+.thread-footer { margin-top: 15px; }
+.op-post { border-left: 3px solid #00ff00; }
+.reply-post { margin-left: 20px; }
+
+/* Errors */
+.error-page { text-align: center; padding: 50px 0; }
+.error-art { font-size: 12px; color: #ff0000; }
+.error-message { font-size: 18px; margin: 30px 0; }
+.error-code { color: #ff0000; font-weight: bold; }
+.lain-quote { margin: 30px 0; font-style: italic; color: #888; }
+
+/* Footer */
+footer { margin-top: 50px; color: #888; text-align: center; }
+.quote { font-style: italic; }
+.info { font-size: 12px; }
+
+/* Accessibility - Skip link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #111;
+    color: #00ff00;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #00ff00;
+}
+
+.skip-link:focus {
+    top: 0;
+    z-index: 999;
+}
+
+/* Focus indicators - retro style */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 2px dotted #00ff00 !important;
+    outline-offset: 2px !important;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Overflow - L-Thread</title>
+    <meta name="description" content="File size exceeded maximum limit">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Data Overflow</h1>
+        </header>
+
+        <main class="error-page">
+            <pre class="error-art">
+     ∩___∩
+     | ノ   ヽ
+    /  ●  ● |
+   |   ( _●_) ミ
+   彡､   |∪| ､`＼
+  / ＿＿ ヽノ /´>  )
+  (＿＿＿) / (_／
+   [TOO BIG]
+            </pre>
+
+            <p class="error-message" th:text="${errorMessage} ?: 'Data overflow. Maximum file size is 20MB.'">
+                Data overflow. Maximum file size is 20MB.
+            </p>
+
+            <p class="error-code">ERROR 413</p>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="javascript:history.back()">[Go Back]</a>
+                <a href="/">[Return to Home]</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>

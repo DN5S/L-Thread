@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invalid Transmission - L-Thread</title>
+    <meta name="description" content="Invalid request format">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Invalid Transmission</h1>
+        </header>
+
+        <main class="error-page">
+            <pre class="error-art">
+      ╱|、
+    (˚ˎ 。7
+     |、˜〵
+     じしˍ,)ノ
+  [BAD REQUEST]
+            </pre>
+
+            <p class="error-message" th:text="${errorMessage} ?: 'Invalid transmission format.'">
+                Invalid transmission format.
+            </p>
+
+            <p class="error-code">ERROR 400</p>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="/">[Return to Home]</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>

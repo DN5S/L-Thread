@@ -1,1 +1,1 @@
-rootProject.name = "L-Thread"
+rootProject.name = "lthread"

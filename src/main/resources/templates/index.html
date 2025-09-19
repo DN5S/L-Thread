@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">L-Thread</title>
+    <meta name="description" th:content="${metaDescription}">
+    <meta name="robots" content="index, nofollow, noarchive">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a href="#content" class="skip-link">Skip to content</a>
+<div class="container">
+    <main id="content" role="main">
+        <nav role="navigation" aria-label="Board selection">
+            <ul class="board-list">
+                <li th:each="board : ${boards}">
+                    <a th:href="@{/board/{name}(name=${board.name})}"
+                       th:text="${board.displayName} + ' - ' + ${board.description}"
+                       th:attr="aria-label='Navigate to ' + ${board.name} + ' board'">/board/</a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+
+    <footer>
+        <hr>
+        <nav role="navigation" aria-label="Footer navigation">
+            <a href="/help">[Help/Rules]</a>
+        </nav>
+    </footer>
+</div>
+<script src="/js/minimal.js" defer></script>
+</body>
+</html>

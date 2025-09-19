@@ -38,3 +38,13 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### Application ###
+*.log
+/static/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+.claude/

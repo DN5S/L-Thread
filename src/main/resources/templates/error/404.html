@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Lost - L-Thread</title>
+    <meta name="description" content="The requested data has been pruned from memory">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#content" class="skip-link">Skip to content</a>
+    <div class="container">
+        <header>
+            <h1>Signal Lost</h1>
+        </header>
+
+        <main id="content" class="error-page" role="main">
+            <pre class="error-art">
+        ∧＿∧
+       ( ˙-˙ )
+       (つ　つ
+       |  |
+       (＿)＿)
+    [DISCONNECTED]
+            </pre>
+
+            <p class="error-message" th:text="${errorMessage} ?: 'The data you seek has returned to the void.'">
+                The data you seek has returned to the void.
+            </p>
+
+            <p class="error-code">ERROR 404</p>
+
+            <div class="lain-quote">
+                <p>"If you're not remembered, then you never existed."</p>
+            </div>
+        </main>
+
+        <footer>
+            <nav role="navigation" aria-label="Error page navigation">
+                <a href="/">[Return to Home]</a>
+            </nav>
+            <p class="quote">"No matter where you go, everyone's connected."</p>
+        </footer>
+    </div>
+</body>
+</html>

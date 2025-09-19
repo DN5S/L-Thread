@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    image: lthread:latest
+    container_name: lthread-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_REDIS_HOST=db
+      - SPRING_DATA_REDIS_PORT=6379
+      - MEMORY_THRESHOLD=0.8
+    volumes:
+      - images:/app/static
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: redis:7-alpine
+    container_name: lthread-redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    # CRITICAL: NO DATA VOLUMES
+    restart: unless-stopped
+
+volumes:
+  images:
+    name: lthread-images
