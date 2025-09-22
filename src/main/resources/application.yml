@@ -45,3 +45,8 @@ server:
     min-response-size: 1024
   http2:
     enabled: true
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+    include-stacktrace: never

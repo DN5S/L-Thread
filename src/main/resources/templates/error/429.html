@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Limited - L-Thread</title>
+    <meta name="description" content="Connection throttled">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <a href="#content" class="skip-link">Skip to content</a>
+    <div class="container">
+        <header>
+            <h1>Connection Throttled</h1>
+        </header>
+
+        <main id="content" class="error-page" role="main">
+            <pre class="error-art">
+        ∧＿∧
+       ( -_- )
+       (つ　つ
+       |  |
+       (＿)＿)
+    [RATE LIMITED]
+            </pre>
+
+            <p class="error-message" th:text="${errorMessage} ?: 'Connection throttled. Please wait.'">
+                Connection throttled. Please wait.
+            </p>
+
+            <p class="error-code">ERROR 429</p>
+
+            <div class="lain-quote">
+                <p>"Time passes slowly in the Wired."</p>
+            </div>
+        </main>
+
+        <footer>
+            <nav role="navigation" aria-label="Error page navigation">
+                <a href="/">[Return to Home]</a>
+            </nav>
+            <p class="quote">"No matter where you go, everyone's connected."</p>
+        </footer>
+    </div>
+</body>
+</html>

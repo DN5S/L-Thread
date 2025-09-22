@@ -1,12 +1,15 @@
 package dev.dn5s.lthread.controller.advice
 
+import dev.dn5s.lthread.controller.StaticController
+import dev.dn5s.lthread.controller.BoardController
+import dev.dn5s.lthread.controller.ThreadController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.multipart.MaxUploadSizeExceededException
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = [StaticController::class, BoardController::class, ThreadController::class])
 class GlobalExceptionHandler {
 
     /**
