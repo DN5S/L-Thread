@@ -29,7 +29,7 @@ class PostRepository(
         dataMap["timestamp"] = post.timestamp.toString()
         post.imagePath?.let { dataMap["imagePath"] = it }
         post.thumbnailPath?.let { dataMap["thumbnailPath"] = it }
-        post.tripcode?.let { dataMap["tripcode"] = it }
+        dataMap["author"] = post.author
 
         hashRedisTemplate.opsForHash<String, String>().putAll(key, dataMap)
 
@@ -49,7 +49,7 @@ class PostRepository(
             imagePath = data["imagePath"],
             thumbnailPath = data["thumbnailPath"],
             timestamp = data["timestamp"]?.let { Instant.parse(it) } ?: Instant.now(),
-            tripcode = data["tripcode"]
+            author = data["author"] ?: "Anonymous"
         )
     }
 

@@ -1,6 +1,31 @@
 (function() {
     'use strict';
 
+    // Form transmission state enhancement
+    document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('form[method="post"]');
+
+        forms.forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn && !submitBtn.classList.contains('transmitting')) {
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = '[TRANSMITTING...]';
+                    submitBtn.classList.add('transmitting');
+
+                    // Show completion message briefly before actual submission
+                    setTimeout(function() {
+                        submitBtn.textContent = '[TRANSMISSION COMPLETE]';
+                        setTimeout(function() {
+                            // Allow the form to submit naturally
+                        }, 200);
+                    }, 500);
+                }
+            });
+        });
+
+    });
+
     // Only enhancement: Native lazy loading fallback for older browsers
     // For browsers that don't support loading="lazy" attribute
     if ('IntersectionObserver' in window) {

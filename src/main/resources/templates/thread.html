@@ -28,7 +28,7 @@
                          th:id="|post${post.id}|">
                     <div class="post-header">
                         <span class="post-number" th:text="|No.${post.id}|">No.456</span>
-                        <span class="post-name" th:text="${post.tripcode}">Anonymous</span>
+                        <span class="post-name" th:text="${post.author}">Anonymous</span>
                         <span class="post-time" th:text="${#temporals.format(post.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:34:56</span>
                     </div>
                     <div class="post-content">
@@ -49,8 +49,8 @@
                     <input type="text" name="website" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <table>
                         <tr>
-                            <td><label for="reply-name">Name:</label></td>
-                            <td><input type="text" id="reply-name" name="name" placeholder="Anonymous (optional)" maxlength="100" aria-label="Author name (optional)"></td>
+                            <td></td>
+                            <td><input type="text" id="reply-name" name="name" placeholder="Anonymous" maxlength="100" aria-label="Author name (optional)" class="deemphasized-field"></td>
                         </tr>
                         <tr>
                             <td><label for="reply-image">Image:</label></td>
@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td><label for="reply-text">Text:</label></td>
-                            <td><textarea id="reply-text" name="text" rows="6" cols="60" maxlength="2000" required aria-label="Reply message" aria-required="true"></textarea></td>
+                            <td><textarea id="reply-text" name="text" rows="8" cols="60" maxlength="20000" required aria-label="Reply message" aria-required="true"></textarea></td>
                         </tr>
                         <tr>
                             <td></td>

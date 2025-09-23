@@ -25,8 +25,8 @@
                     <input type="text" name="website" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <table>
                         <tr>
-                            <td><label for="thread-name">Name:</label></td>
-                            <td><input type="text" id="thread-name" name="name" placeholder="Anonymous (optional)" maxlength="100" aria-label="Author name (optional)"></td>
+                            <td></td>
+                            <td><input type="text" id="thread-name" name="name" placeholder="Anonymous" maxlength="100" aria-label="Author name (optional)" class="deemphasized-field"></td>
                         </tr>
                         <tr>
                             <td><label for="thread-image">Image:</label></td>
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td><label for="thread-text">Text:</label></td>
-                            <td><textarea id="thread-text" name="text" rows="6" cols="60" maxlength="2000" required aria-label="Thread message" aria-required="true"></textarea></td>
+                            <td><textarea id="thread-text" name="text" rows="8" cols="60" maxlength="20000" required aria-label="Thread message" aria-required="true"></textarea></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -56,7 +56,7 @@
 
                     <div th:if="${thread.op}" class="post op-post">
                         <div class="post-header">
-                            <span class="post-name" th:text="${thread.op.tripcode}">Anonymous</span>
+                            <span class="post-name" th:text="${thread.op.author}">Anonymous</span>
                             <span class="post-time" th:text="${#temporals.format(thread.op.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:34:56</span>
                         </div>
                         <div class="post-content">
@@ -73,7 +73,7 @@
                     <div th:if="${!thread.previewReplies.isEmpty()}" class="preview-replies">
                         <div th:each="reply : ${thread.previewReplies}" class="post reply-post">
                             <div class="post-header">
-                                <span class="post-name" th:text="${reply.tripcode}">Anonymous</span>
+                                <span class="post-name" th:text="${reply.author}">Anonymous</span>
                                 <span class="post-time" th:text="${#temporals.format(reply.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-01-20 12:35:23</span>
                             </div>
                             <div class="post-content">

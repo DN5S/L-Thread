@@ -19,7 +19,6 @@ class BoardService(
     private val threadRepository: ThreadRepository,
     private val postRepository: PostRepository,
     private val imageService: ImageService,
-    private val tripcodeService: TripcodeService,
     private val textSanitizer: TextSanitizer,
     private val appConfig: AppConfig
 ) {
@@ -39,14 +38,15 @@ class BoardService(
     }
 
     /**
-     * Generate a formatted display name with optional tripcode
+     * Get display name - defaults to Anonymous if not provided
      */
-    private fun generateFormattedName(nameInput: String?): String {
-        // Sanitize name input first
+    private fun getDisplayName(nameInput: String?): String {
         val sanitizedName = textSanitizer.sanitizeName(nameInput)
-        val (displayName, tripcode) = tripcodeService.generateTripcode(sanitizedName)
-            ?: Pair("Anonymous", null)
-        return tripcodeService.formatDisplay(displayName, tripcode)
+        return if (sanitizedName.isNullOrBlank()) {
+            "Anonymous"
+        } else {
+            sanitizedName
+        }
     }
 
     /**
@@ -88,7 +88,7 @@ class BoardService(
             imagePath = imagePath,
             thumbnailPath = thumbnailPath,
             timestamp = Instant.now(),
-            tripcode = generateFormattedName(nameInput)
+            author = getDisplayName(nameInput)
         )
         postRepository.save(post)
 
@@ -141,7 +141,7 @@ class BoardService(
             imagePath = imagePath,
             thumbnailPath = thumbnailPath,
             timestamp = Instant.now(),
-            tripcode = generateFormattedName(nameInput)
+            author = getDisplayName(nameInput)
         )
         postRepository.save(post)
 

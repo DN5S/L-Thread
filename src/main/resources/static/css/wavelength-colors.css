@@ -1,147 +1,20 @@
-/* L-Thread Wavelength-Based Color System with OKLAB */
-/* Scientific color mapping based on visible light spectrum (380-750nm) */
+/* L-Thread Minimal Wavelength Color System - OKLAB */
 
 :root {
-  /* Wavelength to OKLAB color mappings */
-  /* Using OKLCH for better control over lightness, chroma, and hue */
-
-  /* Violet spectrum (380-450nm) */
-  --wl-380nm: oklch(30% 0.25 303);  /* Deep violet */
-  --wl-400nm: oklch(35% 0.31 285);  /* Violet */
-  --wl-420nm: oklch(40% 0.33 270);  /* Blue-violet */
-  --wl-440nm: oklch(45% 0.32 255);  /* Indigo */
-
-  /* Blue spectrum (450-495nm) */
-  --wl-450nm: oklch(50% 0.31 245);  /* Deep blue */
+  /* Core wavelength colors - simplified */
+  --wl-420nm: oklch(40% 0.33 270);  /* Violet */
   --wl-470nm: oklch(55% 0.29 235);  /* Blue */
   --wl-490nm: oklch(60% 0.27 220);  /* Sky blue */
-
-  /* Cyan spectrum (495-520nm) */
-  --wl-500nm: oklch(65% 0.25 205);  /* Cyan */
-  --wl-510nm: oklch(68% 0.23 195);  /* Light cyan */
-
-  /* Green spectrum (520-565nm) */
-  --wl-520nm: oklch(70% 0.28 165);  /* Blue-green */
   --wl-530nm: oklch(72% 0.31 145);  /* Green */
-  --wl-540nm: oklch(74% 0.29 135);  /* Pure green */
-  --wl-550nm: oklch(76% 0.27 125);  /* Yellow-green */
-  --wl-560nm: oklch(78% 0.25 115);  /* Lime */
-
-  /* Yellow spectrum (565-590nm) */
-  --wl-570nm: oklch(82% 0.23 105);  /* Yellow-lime */
   --wl-580nm: oklch(85% 0.21 95);   /* Yellow */
-  --wl-590nm: oklch(83% 0.25 85);   /* Amber */
-
-  /* Orange spectrum (590-635nm) */
-  --wl-600nm: oklch(70% 0.30 65);   /* Orange */
-  --wl-610nm: oklch(68% 0.33 55);   /* Red-orange */
-  --wl-620nm: oklch(65% 0.35 45);   /* Deep orange */
-
-  /* Red spectrum (635-750nm) */
-  --wl-630nm: oklch(60% 0.37 35);   /* Orange-red */
   --wl-650nm: oklch(55% 0.40 25);   /* Red */
-  --wl-670nm: oklch(50% 0.38 20);   /* Deep red */
-  --wl-700nm: oklch(45% 0.35 15);   /* Near-infrared red */
 
-  /* Semantic color mappings using wavelengths */
-  --color-primary: var(--wl-490nm);        /* Cyan-blue */
-  --color-secondary: var(--wl-550nm);      /* Green */
-  --color-accent: var(--wl-420nm);         /* Violet */
-  --color-warning: var(--wl-580nm);        /* Yellow */
-  --color-error: var(--wl-650nm);          /* Red */
-  --color-success: var(--wl-530nm);        /* Green */
-  --color-info: var(--wl-470nm);           /* Blue */
-
-  /* Text colors with optimal contrast */
-  --text-primary: oklch(90% 0.03 195);     /* Near white with slight blue tint */
-  --text-secondary: oklch(75% 0.05 195);   /* Lighter gray for better contrast */
-  --text-muted: oklch(60% 0.03 195);       /* Muted gray, still readable */
-  --text-inverse: oklch(15% 0.02 195);     /* Dark text on light bg */
+  /* Text colors */
+  --text-primary: oklch(90% 0.03 195);
+  --text-secondary: oklch(75% 0.05 195);
+  --text-muted: oklch(60% 0.03 195);
 
   /* Background colors */
-  --bg-primary: oklch(8% 0.01 195);        /* Near black with slight color */
-  --bg-secondary: oklch(12% 0.02 195);     /* Slightly lighter */
-  --bg-tertiary: oklch(16% 0.03 195);      /* Card backgrounds */
-  --bg-overlay: oklch(5% 0.01 195 / 0.8);  /* Semi-transparent overlay */
-
-  /* Glow effects using wavelength colors - reduced intensity */
-  --glow-violet: 0 0 6px var(--wl-420nm);
-  --glow-blue: 0 0 6px var(--wl-470nm);
-  --glow-cyan: 0 0 6px var(--wl-500nm);
-  --glow-green: 0 0 6px var(--wl-530nm);
-  --glow-yellow: 0 0 8px var(--wl-580nm);
-  --glow-orange: 0 0 6px var(--wl-600nm);
-  --glow-red: 0 0 6px var(--wl-650nm);
-
-  /* Spectral gradient for special effects */
-  --gradient-spectrum: linear-gradient(
-    90deg,
-    var(--wl-400nm) 0%,
-    var(--wl-450nm) 14%,
-    var(--wl-500nm) 28%,
-    var(--wl-550nm) 42%,
-    var(--wl-580nm) 56%,
-    var(--wl-600nm) 70%,
-    var(--wl-650nm) 84%,
-    var(--wl-700nm) 100%
-  );
-
-  /* Subtle spectral gradient for backgrounds */
-  --gradient-spectrum-subtle: linear-gradient(
-    135deg,
-    oklch(8% 0.02 270) 0%,
-    oklch(8% 0.02 195) 25%,
-    oklch(8% 0.02 145) 50%,
-    oklch(8% 0.02 95) 75%,
-    oklch(8% 0.02 25) 100%
-  );
-
-  /* Chromatic aberration offsets */
-  --aberration-red: 2px;
-  --aberration-blue: -2px;
-}
-
-/* Utility classes for wavelength colors */
-.wl-violet { color: var(--wl-420nm); }
-.wl-blue { color: var(--wl-470nm); }
-.wl-cyan { color: var(--wl-500nm); }
-.wl-green { color: var(--wl-530nm); }
-.wl-yellow { color: var(--wl-580nm); }
-.wl-orange { color: var(--wl-600nm); }
-.wl-red { color: var(--wl-650nm); }
-
-/* Glow utility classes */
-.glow-violet { text-shadow: var(--glow-violet); }
-.glow-blue { text-shadow: var(--glow-blue); }
-.glow-cyan { text-shadow: var(--glow-cyan); }
-.glow-green { text-shadow: var(--glow-green); }
-.glow-yellow { text-shadow: var(--glow-yellow); }
-.glow-orange { text-shadow: var(--glow-orange); }
-.glow-red { text-shadow: var(--glow-red); }
-
-/* Chromatic aberration effect */
-@supports (text-shadow: 0 0 0 red) {
-  .chromatic-text {
-    text-shadow:
-      var(--aberration-red) 0 0 var(--wl-650nm),
-      var(--aberration-blue) 0 0 var(--wl-470nm);
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: more) {
-  :root {
-    --text-primary: oklch(95% 0.10 195);
-    --text-secondary: oklch(85% 0.08 195);
-    --bg-primary: oklch(5% 0.01 195);
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  --bg-primary: oklch(8% 0.01 195);
+  --bg-secondary: oklch(12% 0.02 195);
 }
