@@ -1,13 +1,16 @@
 package dev.dn5s.lthread.controller.advice
 
 import dev.dn5s.lthread.controller.ResourceNotFoundException
+import dev.dn5s.lthread.controller.WebController
+import dev.dn5s.lthread.controller.BoardController
+import dev.dn5s.lthread.controller.ThreadController
 import org.slf4j.LoggerFactory
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.multipart.MaxUploadSizeExceededException
 
-@ControllerAdvice(basePackageClasses = [dev.dn5s.lthread.controller.WebController::class])
+@ControllerAdvice(basePackages = ["dev.dn5s.lthread.controller"])
 class WebExceptionHandler {
 
     companion object {

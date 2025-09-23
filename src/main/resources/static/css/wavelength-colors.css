@@ -1,0 +1,20 @@
+/* L-Thread Minimal Wavelength Color System - OKLAB */
+
+:root {
+  /* Core wavelength colors - simplified */
+  --wl-420nm: oklch(40% 0.33 270);  /* Violet */
+  --wl-470nm: oklch(55% 0.29 235);  /* Blue */
+  --wl-490nm: oklch(60% 0.27 220);  /* Sky blue */
+  --wl-530nm: oklch(72% 0.31 145);  /* Green */
+  --wl-580nm: oklch(85% 0.21 95);   /* Yellow */
+  --wl-650nm: oklch(55% 0.40 25);   /* Red */
+
+  /* Text colors */
+  --text-primary: oklch(90% 0.03 195);
+  --text-secondary: oklch(75% 0.05 195);
+  --text-muted: oklch(60% 0.03 195);
+
+  /* Background colors */
+  --bg-primary: oklch(8% 0.01 195);
+  --bg-secondary: oklch(12% 0.02 195);
+}

@@ -29,7 +29,7 @@ class TextSanitizer {
     }
 
     /**
-     * Sanitize name input for tripcode
+     * Sanitize name input
      * More restrictive than general text
      */
     fun sanitizeName(input: String?): String? {
@@ -38,8 +38,8 @@ class TextSanitizer {
         // Remove any HTML tags first
         var sanitized = plaintextPolicy.sanitize(input)
 
-        // Only allow alphanumeric, spaces, and # for tripcode
-        sanitized = sanitized.replace(Regex("[^a-zA-Z0-9 #]"), "")
+        // Only allow alphanumeric and spaces for names
+        sanitized = sanitized.replace(Regex("[^a-zA-Z0-9 ]"), "")
 
         // Limit length to prevent abuse
         if (sanitized.length > 50) {
